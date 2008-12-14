@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title>Transactions: <%= controller.action_name %></title>
+    <%= stylesheet_link_tag 'style' %>
+    <%= stylesheet_link_tag 'dhtmlxcombo.css' %>
+    <%= javascript_include_tag :all  %>
+  </head>
+  <body>
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <th align="center" valign="top" scope="col">
+          <table width="793" border="0" cellspacing="0" cellpadding="0">
+            
+            <tr>
+              <th align="center" valign="middle" style="background-color: #F5F5F5;" scope="col">
+                
+                <table width="98%" border="0" align="center" cellpadding="0" cellspacing="5">
+                  <tr>
+                    <th align="left" valign="middle" class="header" scope="col">
+                      
+                    </th>
+                    
+                  </tr>
+              </table></th>
+            </tr>
+        </table></th>
+      </tr>
+      
+      <tr>
+        <td align="center" valign="middle" scope="col">
+          <table id="tableMainContent" >
+            <tr>
+              <td class="mainContentIntro" scope="col">&nbsp;</td>
+              <th width="9" scope="col">&nbsp;</th>
+              <td class="rightSideIntro" scope="col">&nbsp;</td>
+              
+            </tr>
+            <tr>
+              <td id="mainContent" scope="col" >
+                <p style="color: green"><%= flash[:notice] %></p>
+                
+                <%= yield  %>
+              </td>
+              <th scope="col" width="9">&nbsp;</th>
+              <td  class="rightSide" scope="col" ><br />
+              <% if logged_in? %>
+                <p><%= label_tag "you are logged in as #{current_user.login}" %></p>
+                <br />
+              <% end %>
+                <span class="rightSideTitles">Links </span>
+                <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tr>
+                    <td width="58%" align="center" valign="top">
+                      <div align="left" style="padding-left: 10px;">
+                        
+                        <br/>
+                        
+                            <%= link_to "log out", logout_path %>
+                        
+                        <br />
+                        &nbsp;
+                      </div>
+                    </td>
+                    
+                  </tr>
+                  <tr>
+                    <td>
+                      <div>
+                        <% if logged_in? %>
+                          <p id = "lastUpload">
+                          <%= label_tag "Last upload: #{@last_upload.strftime("%Y/%m/%d")}" %><p>
+                          <br/>
+                          <%= render :partial => "transactions/new" %>
+                        <% end %>
+                      </div>
+                      <div id = "subtotal">
+                        
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td id="bottom" scope="col">
+          <table id= "bottomTable" >
+            <tr>
+              <td id="lastLine"  scope="col" >
+                
+                &nbsp;
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td align="center" valign="middle" scope="col">
+        &nbsp;</td>
+      </tr>
+      
+      
+      
+      
+    </table>
+  </body>
+</html>
+

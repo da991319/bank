@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  description: MyString
+  amount: 9.99
+  transaction_date: 2008-09-20
+  user: MyString
+  payed: false
+  payed_date: 2008-09-20
+  payed_by: 1
+
+two:
+  description: MyString
+  amount: 9.99
+  transaction_date: 2008-09-20
+  user: MyString
+  payed: false
+  payed_date: 2008-09-20
+  payed_by: 1

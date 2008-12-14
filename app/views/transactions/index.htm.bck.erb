@@ -1,0 +1,45 @@
+
+<% form_tag({:controller => "transactions", :action => "payed"}, {:id => "update_payed"}) do %>
+<table>
+  <tr>
+    <th>Description</th>
+    <th>Amount</th>
+    <th>Transaction date</th>
+    <th>User</th>
+    <th>Payed</th>
+    <th>Payed date</th>
+    <th>Payed by</th>
+  </tr>
+
+<% for transaction in @transactions %>
+  <tr>
+    <td><%=h transaction.description %></td>
+    <td><%=h transaction.amount %></td>
+    <td><%=h transaction.transaction_date %></td>
+    <td><% if !transaction.user %>
+            <%= select("transaction","user",[ "Join","Julie","Regis" ],{:include_blank => true},{:onchange => remote_function(:url =>{:action => "update_user",:id=> transaction.id},:with =>"'user=' + this.value")}) %>
+        <% else %>
+            <%= select("transaction","user",[ "Join","Julie","Regis" ],{:selected => transaction.user},{:onchange => remote_function(:url =>{:action => "update_user",:id=> transaction.id},:with =>"'user=' + this.value")})  %>
+        <% end %>
+    </td>
+    <td><% if transaction.payed %>
+            <%= render :inline => "YES" %>
+        <% else %>
+            <% check_box("transaction", "payed[]",{:onchange => remote_function(:url =>{:action => "payed", :id => transaction.id}, :with => "'checked='+ this.checked")}, :checked_value => transaction.id) %>
+            <%= check_box_tag("payed[]",transaction.id, false, :onchange => remote_function(:url =>{:action => "payed", :id => transaction.id, :subtotal => session[:subtotal], :format => "js"}, :with => "'checked='+ this.checked") ) %>
+        <% end %>
+    </td>
+    <td><%=h transaction.payed_date %></td>
+    <td><%=h transaction.payed_by %></td>
+    <td><%= link_to 'Show', transaction %></td>
+    <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
+    <td><%= link_to 'Destroy', transaction, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+
+<%= submit_tag "Payed selected transactions"  %>
+<% end %>

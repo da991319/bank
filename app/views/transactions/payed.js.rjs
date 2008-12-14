@@ -1,0 +1,2 @@
+page.replace_html "subtotal", "Subtotal = #{@subtotal}" 
+page[:subtotal].visual_effect :highlight
